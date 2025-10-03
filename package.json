@@ -10,8 +10,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@byteform/core": "^1.0.0-alpha.0",
         "@emotion/react": "^11.13.0",
-        "@byteform/core": "latest",
         "@tabler/icons-react": "^3.31.0",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
