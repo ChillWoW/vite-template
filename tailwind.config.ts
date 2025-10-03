@@ -1,23 +1,23 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
-  theme: {
-    extend: {
-      colors: {
-        dark: {
-          50: "#C9C9C9",
-          100: "#b8b8b8",
-          200: "#828282",
-          300: "#696969",
-          400: "#424242",
-          500: "#3b3b3b",
-          600: "#2e2e2e",
-          700: "#242424",
-          800: "#1f1f1f",
-          900: "#141414",
-        },
-      },
-    },
-  },
+    content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+    theme: {
+        extend: {
+            colors: {
+                dark: {
+                    50: "var(--dark-50)",
+                    100: "var(--dark-100)",
+                    200: "var(--dark-200)",
+                    300: "var(--dark-300)",
+                    400: "var(--dark-400)",
+                    500: "var(--dark-500)",
+                    600: "var(--dark-600)",
+                    700: "var(--dark-700)",
+                    800: "var(--dark-800)",
+                    900: "var(--dark-900)"
+                }
+            }
+        }
+    }
 } satisfies Config;
