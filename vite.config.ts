@@ -1,17 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
-import path from "path";
+import path from "node:path";
 
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react(), tailwindcss()],
-    base: "./",
-    build: {
-        outDir: "build"
-    },
     server: {
         port: 3000
+    },
+    build: {
+        outDir: "build"
     },
     resolve: {
         alias: {
