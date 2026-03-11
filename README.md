@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# Vite Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern starter template built with Vite, React, TypeScript, Bun, Oxlint, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite](https://vite.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Bun](https://bun.sh/)
+- [Oxlint](https://oxc.rs/docs/guide/usage/linter.html)
+- [Tailwind CSS v4](https://tailwindcss.com/)
 
-## React Compiler
+## Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- Fast Vite development server
+- React + TypeScript setup
+- SWC-powered React plugin
+- Bun for package management and scripts
+- Oxlint for linting
+- Tailwind CSS v4 configured through the Vite plugin
+- `@` path alias mapped to `src`
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Install dependencies
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Start development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun run dev
 ```
+
+## Build for production
+
+```bash
+bun run build
+```
+
+## Preview production build
+
+```bash
+bun run preview
+```
+
+## Scripts
+
+```bash
+bun run dev
+bun run build
+bun run preview
+bun run lint
+bun run lint:fix
+bun run check
+```
+
+## Path Alias
+
+This template includes the `@` alias for imports from `src` directory.
+
+Example:
+
+```tsx
+import { cn } from "@/lib/cn";
+```
+
+## Styling
+
+Tailwind CSS v4 is configured through the Vite plugin.
+
+## Linting
+
+Oxlint is used for fast linting.
+
+```bash
+bun run lint
+```
+
+## Type Checking
+
+Run TypeScript checks manually with:
+
+```bash
+bun run check
+```
+
+## License
+
+[MIT](LICENSE)
