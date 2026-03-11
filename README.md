@@ -29,19 +29,19 @@ A modern starter template built with Vite, React, TypeScript, Bun, Oxlint, and T
 bun install
 ```
 
-## Start development server
+### Start development server
 
 ```bash
 bun run dev
 ```
 
-## Build for production
+### Build for production
 
 ```bash
 bun run build
 ```
 
-## Preview production build
+### Preview production build
 
 ```bash
 bun run preview
