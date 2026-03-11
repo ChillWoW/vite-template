@@ -11,15 +11,21 @@
     --color-dark-600: #2e2e2e;
     --color-dark-700: #242424;
     --color-dark-800: #1f1f1f;
+    --color-dark-850: #1a1a1a;
     --color-dark-900: #141414;
+    --color-dark-950: #0d0d0d;
 }
 
-body {
+* {
     margin: 0;
     font-family: "Inter", sans-serif;
-    height: 100%;
 }
 
+html,
+body,
 #root {
     height: 100%;
+    width: 100%;
+    background-color: var(--color-dark-950);
+    color: #fff;
 }
