@@ -12,7 +12,7 @@ export function BodyPortalDemo() {
             </Button>
             {open && (
                 <Portal>
-                    <div className="fixed right-6 bottom-6 flex items-center gap-3 rounded-lg border border-border bg-raised p-4 text-sm shadow-lg">
+                    <div className="fixed right-6 bottom-6 flex items-center gap-3 rounded-md border border-border bg-raised p-4 text-sm shadow-lg">
                         Rendered in document.body
                         <Button size="icon-xs" variant="ghost" aria-label="Close" onClick={() => setOpen(false)}>
                             <XIcon />

@@ -193,8 +193,8 @@ export const demos: Demo[] = [
                     </Collapsible>
                 </Variant>
                 <Variant label="Card">
-                    <Collapsible className="w-full max-w-sm rounded-lg border border-border bg-raised">
-                        <Collapsible.Trigger className="justify-between rounded-lg px-4 py-3 hover:bg-hover">
+                    <Collapsible className="w-full max-w-sm rounded-md border border-border bg-raised">
+                        <Collapsible.Trigger className="justify-between rounded-md px-4 py-3 hover:bg-hover">
                             Recovery keys
                         </Collapsible.Trigger>
                         <Collapsible.Panel>
