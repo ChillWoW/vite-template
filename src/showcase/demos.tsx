@@ -25,7 +25,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Kbd, Menu, Modal, NumberField, Popover, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Textarea, Toggle, Tooltip } from "../ui";
+import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Kbd, Menu, Modal, NumberField, Popover, Radio, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Textarea, Toggle, Tooltip } from "../ui";
 import { ControlledAutocompleteDemo, FormAutocompleteDemo } from "./AutocompleteDemos";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
@@ -34,6 +34,7 @@ import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
 import { ControlledNumberFieldDemo, FormNumberFieldDemo } from "./NumberFieldDemos";
 import { FormPopoverDemo } from "./PopoverDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
+import { ControlledRadioDemo, FormRadioDemo, ValidationRadioDemo } from "./RadioDemos";
 import { ControlledSegmentedControlDemo, FormSegmentedControlDemo } from "./SegmentedControlDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { LoadingToggleSkeletonDemo } from "./SkeletonDemos";
@@ -971,6 +972,76 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Custom container">
                     <ContainerPortalDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Radio",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Radio.Group defaultValue="dark" aria-label="Theme" className="text-sm text-text">
+                        {Object.entries(themes).map(([key, label]) => (
+                            <label key={key} className="flex cursor-pointer items-center gap-2.5">
+                                <Radio value={key} />
+                                {label}
+                            </label>
+                        ))}
+                    </Radio.Group>
+                </Variant>
+                <Variant label="Sizes">
+                    {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                        <Radio.Group key={size} defaultValue="a" aria-label={`Size ${size}`} className="flex-row items-center">
+                            <Radio size={size} value="a" aria-label="Selected" />
+                            <Radio size={size} value="b" aria-label="Unselected" />
+                        </Radio.Group>
+                    ))}
+                </Variant>
+                <Variant label="Horizontal">
+                    <Radio.Group defaultValue="m" aria-label="T-shirt size" className="flex-row gap-5 text-sm text-text">
+                        {["S", "M", "L", "XL"].map((s) => (
+                            <label key={s} className="flex cursor-pointer items-center gap-2">
+                                <Radio value={s.toLowerCase()} />
+                                {s}
+                            </label>
+                        ))}
+                    </Radio.Group>
+                </Variant>
+                <Variant label="States">
+                    {[
+                        { label: "Disabled item", value: "free", disabledItem: "team" },
+                        { label: "Disabled", value: "pro", disabled: true },
+                        { label: "Read only", value: "team", readOnly: true },
+                    ].map((g) => (
+                        <Radio.Group
+                            key={g.label}
+                            defaultValue={g.value}
+                            disabled={g.disabled}
+                            readOnly={g.readOnly}
+                            aria-label={`Plan (${g.label.toLowerCase()})`}
+                            className="text-sm text-text"
+                        >
+                            {["Free", "Pro", "Team"].map((p) => (
+                                <label
+                                    key={p}
+                                    className="flex cursor-pointer items-center gap-2.5 has-data-readonly:cursor-default has-data-disabled:cursor-not-allowed has-data-disabled:text-muted"
+                                >
+                                    <Radio value={p.toLowerCase()} disabled={g.disabledItem === p.toLowerCase()} />
+                                    {p}
+                                </label>
+                            ))}
+                        </Radio.Group>
+                    ))}
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledRadioDemo />
+                </Variant>
+                <Variant label="Validation">
+                    <ValidationRadioDemo />
+                </Variant>
+                <Variant label="Form values">
+                    <FormRadioDemo />
                 </Variant>
             </>
         ),
