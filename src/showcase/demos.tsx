@@ -6,7 +6,7 @@ import {
     PlusIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Input, Spinner } from "../ui";
+import { Button, Field, Input, Spinner } from "../ui";
 import { Variant } from "./Variant";
 
 export interface Demo {
@@ -64,6 +64,66 @@ export const demos: Demo[] = [
                     <Button variant="outline" disabled>Outline</Button>
                     <Button variant="destructive" disabled>Destructive</Button>
                     <Button variant="destructive-outline" disabled>Destructive outline</Button>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Field",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <div className="flex w-full max-w-xs flex-col gap-6">
+                        <Field>
+                            <Field.Label>Name</Field.Label>
+                            <Input placeholder="Jane Doe" />
+                        </Field>
+                        <Field>
+                            <Field.Label>Username</Field.Label>
+                            <Input placeholder="jane" />
+                            <Field.Description>Shown on your public profile.</Field.Description>
+                        </Field>
+                    </div>
+                </Variant>
+                <Variant label="Validation (on blur)">
+                    <div className="flex w-full max-w-xs flex-col gap-6">
+                        <Field validationMode="onBlur">
+                            <Field.Label>Email</Field.Label>
+                            <Input type="email" required placeholder="name@example.com" />
+                            <Field.Error match="valueMissing">Email is required.</Field.Error>
+                            <Field.Error match="typeMismatch">Enter a valid email.</Field.Error>
+                        </Field>
+                        <Field
+                            validationMode="onChange"
+                            validate={(value) =>
+                                typeof value === "string" && value.length > 0 && value.length < 3
+                                    ? "At least 3 characters."
+                                    : null
+                            }
+                        >
+                            <Field.Label>Handle</Field.Label>
+                            <Input.Group>
+                                <Input.Addon>@</Input.Addon>
+                                <Input placeholder="jane" />
+                            </Input.Group>
+                            <Field.Description>Validated as you type.</Field.Description>
+                            <Field.Error />
+                        </Field>
+                    </div>
+                </Variant>
+                <Variant label="States">
+                    <div className="flex w-full max-w-xs flex-col gap-6">
+                        <Field invalid>
+                            <Field.Label>Username</Field.Label>
+                            <Input defaultValue="admin" />
+                            <Field.Error match>This username is taken.</Field.Error>
+                        </Field>
+                        <Field disabled>
+                            <Field.Label>Organization</Field.Label>
+                            <Input defaultValue="Acme Inc." />
+                            <Field.Description>Managed by your admin.</Field.Description>
+                        </Field>
+                    </div>
                 </Variant>
             </>
         ),
