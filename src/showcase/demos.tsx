@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import {
     CopyIcon,
+    DotsThreeVerticalIcon,
     EnvelopeSimpleIcon,
     FloppyDiskIcon,
     MagnifyingGlassIcon,
@@ -12,7 +13,8 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Field, Input, Spinner, Switch, Tooltip } from "../ui";
+import { Button, ContextMenu, Field, Input, Menu, Spinner, Switch, Tooltip } from "../ui";
+import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
 import { Variant } from "./Variant";
@@ -72,6 +74,28 @@ export const demos: Demo[] = [
                     <Button variant="outline" disabled>Outline</Button>
                     <Button variant="destructive" disabled>Destructive</Button>
                     <Button variant="destructive-outline" disabled>Destructive outline</Button>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Context Menu",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <FileContextMenuDemo />
+                </Variant>
+                <Variant label="Custom trigger element">
+                    <ContextMenu>
+                        <ContextMenu.Trigger render={<Button variant="secondary" />}>
+                            Right-click this button
+                        </ContextMenu.Trigger>
+                        <ContextMenu.Content>
+                            <ContextMenu.Item>Back</ContextMenu.Item>
+                            <ContextMenu.Item>Forward</ContextMenu.Item>
+                            <ContextMenu.Item>Reload</ContextMenu.Item>
+                        </ContextMenu.Content>
+                    </ContextMenu>
                 </Variant>
             </>
         ),
@@ -214,6 +238,96 @@ export const demos: Demo[] = [
                             </Input.Group>
                         ))}
                     </div>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Menu",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <ActionMenuDemo />
+                </Variant>
+                <Variant label="Checkbox & radio items">
+                    <OptionsMenuDemo />
+                </Variant>
+                <Variant label="Submenus">
+                    <Menu>
+                        <Menu.Trigger render={<Button variant="outline" />}>
+                            <PlusIcon />New
+                        </Menu.Trigger>
+                        <Menu.Content>
+                            <Menu.Item>File<Menu.Shortcut>Ctrl N</Menu.Shortcut></Menu.Item>
+                            <Menu.Item>Folder</Menu.Item>
+                            <Menu.Sub>
+                                <Menu.SubTrigger>From template</Menu.SubTrigger>
+                                <Menu.Content>
+                                    <Menu.Item>Blank</Menu.Item>
+                                    <Menu.Item>Readme</Menu.Item>
+                                    <Menu.Sub>
+                                        <Menu.SubTrigger>Config</Menu.SubTrigger>
+                                        <Menu.Content>
+                                            <Menu.Item>tsconfig.json</Menu.Item>
+                                            <Menu.Item>vite.config.ts</Menu.Item>
+                                            <Menu.Item>.oxlintrc.json</Menu.Item>
+                                        </Menu.Content>
+                                    </Menu.Sub>
+                                </Menu.Content>
+                            </Menu.Sub>
+                            <Menu.Sub>
+                                <Menu.SubTrigger disabled>From URL</Menu.SubTrigger>
+                                <Menu.Content>
+                                    <Menu.Item>Unreachable</Menu.Item>
+                                </Menu.Content>
+                            </Menu.Sub>
+                        </Menu.Content>
+                    </Menu>
+                </Variant>
+                <Variant label="Sides">
+                    {(["bottom", "top", "right", "left"] as const).map((side) => (
+                        <Menu key={side}>
+                            <Menu.Trigger render={<Button variant="outline" />}>{side}</Menu.Trigger>
+                            <Menu.Content side={side}>
+                                <Menu.Item>Profile</Menu.Item>
+                                <Menu.Item>Settings</Menu.Item>
+                                <Menu.Item>Sign out</Menu.Item>
+                            </Menu.Content>
+                        </Menu>
+                    ))}
+                </Variant>
+                <Variant label="Options">
+                    <Menu>
+                        <Menu.Trigger openOnHover render={<Button variant="outline" />}>
+                            Open on hover
+                        </Menu.Trigger>
+                        <Menu.Content>
+                            <Menu.Item>Profile</Menu.Item>
+                            <Menu.Item>Settings</Menu.Item>
+                        </Menu.Content>
+                    </Menu>
+                    <Menu modal={false}>
+                        <Menu.Trigger render={<Button variant="outline" />}>Non-modal</Menu.Trigger>
+                        <Menu.Content>
+                            <Menu.Item>Page stays scrollable</Menu.Item>
+                            <Menu.Item>and interactive</Menu.Item>
+                        </Menu.Content>
+                    </Menu>
+                    <Menu>
+                        <Menu.Trigger render={<Button variant="ghost" size="icon-md" aria-label="More" />}>
+                            <DotsThreeVerticalIcon weight="bold" />
+                        </Menu.Trigger>
+                        <Menu.Content align="end">
+                            <Menu.Item>Aligned to the end</Menu.Item>
+                            <Menu.Item>of the trigger</Menu.Item>
+                        </Menu.Content>
+                    </Menu>
+                    <Menu disabled>
+                        <Menu.Trigger render={<Button variant="outline" />}>Disabled</Menu.Trigger>
+                        <Menu.Content>
+                            <Menu.Item>Hidden</Menu.Item>
+                        </Menu.Content>
+                    </Menu>
                 </Variant>
             </>
         ),
