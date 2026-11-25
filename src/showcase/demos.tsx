@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { PlusIcon, TrashIcon } from "@phosphor-icons/react";
-import { Button, Spinner } from "../ui";
+import { Button, Input, Spinner } from "../ui";
 import { Variant } from "./Variant";
 
 export interface Demo {
@@ -58,6 +58,45 @@ export const demos: Demo[] = [
                     <Button variant="outline" disabled>Outline</Button>
                     <Button variant="destructive" disabled>Destructive</Button>
                     <Button variant="destructive-outline" disabled>Destructive outline</Button>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Input",
+        render: () => (
+            <>
+                <Variant label="Sizes">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        <Input size="xs" placeholder="Extra small" />
+                        <Input size="sm" placeholder="Small" />
+                        <Input size="md" placeholder="Medium" />
+                        <Input size="lg" placeholder="Large" />
+                        <Input size="xl" placeholder="Extra large" />
+                    </div>
+                </Variant>
+                <Variant label="Types">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        <Input type="email" placeholder="name@example.com" />
+                        <Input type="password" defaultValue="hunter22" />
+                        <Input type="number" placeholder="0" />
+                        <Input type="search" placeholder="Search..." />
+                        <Input type="file" />
+                    </div>
+                </Variant>
+                <Variant label="States">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        <Input defaultValue="Filled" />
+                        <Input placeholder="Disabled" disabled />
+                        <Input defaultValue="Read only" readOnly />
+                        <Input defaultValue="Invalid" aria-invalid />
+                    </div>
+                </Variant>
+                <Variant label="With button">
+                    <div className="flex w-full max-w-sm gap-2">
+                        <Input type="email" placeholder="name@example.com" />
+                        <Button>Subscribe</Button>
+                    </div>
                 </Variant>
             </>
         ),
