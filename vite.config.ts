@@ -6,6 +6,10 @@ import { defineConfig } from "vite";
 export default defineConfig({
     plugins: [react(), tailwindcss()],
 
+    build: {
+        outDir: "build"
+    },
+
     server: {
         port: 3000
     }
