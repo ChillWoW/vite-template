@@ -2,21 +2,21 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import { cn } from "../lib/cn";
 
 // Track padding is 2px, so the thumb travels (track width - 4px - thumb width), which
-// equals the thumb size. While pressed the thumb stretches by 4px (iOS-style), so the
-// checked offset shrinks by the same amount to keep it pinned to the right edge.
+// equals track width - track height. While pressed the thumb stretches by 4px (iOS-style),
+// so the checked offset shrinks by the same amount to keep it pinned to the right edge.
 // The press variant skips disabled and read-only switches, which can't change.
 const sizes = {
     sm: {
-        root: "h-4 w-7",
-        thumb: "size-3 data-checked:translate-x-3 group-[:active:not([data-disabled],[data-readonly])]:w-4 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-2",
+        root: "h-4 w-6",
+        thumb: "size-3 data-checked:translate-x-2 group-[:active:not([data-disabled],[data-readonly])]:w-4 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-1",
     },
     md: {
-        root: "h-5 w-9",
-        thumb: "size-4 data-checked:translate-x-4 group-[:active:not([data-disabled],[data-readonly])]:w-5 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-3",
+        root: "h-5 w-8",
+        thumb: "size-4 data-checked:translate-x-3 group-[:active:not([data-disabled],[data-readonly])]:w-5 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-2",
     },
     lg: {
-        root: "h-6 w-11",
-        thumb: "size-5 data-checked:translate-x-5 group-[:active:not([data-disabled],[data-readonly])]:w-6 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-4",
+        root: "h-6 w-10",
+        thumb: "size-5 data-checked:translate-x-4 group-[:active:not([data-disabled],[data-readonly])]:w-6 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-3",
     },
 } as const;
 
