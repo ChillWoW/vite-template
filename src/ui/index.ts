@@ -11,6 +11,7 @@ export * from "./Popover";
 export * from "./Portal";
 export * from "./Select";
 export * from "./Skeleton";
+export * from "./Slider";
 export * from "./Spinner";
 export * from "./Switch";
 export * from "./Tooltip";

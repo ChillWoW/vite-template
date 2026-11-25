@@ -19,7 +19,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Slider, Spinner, Switch, Tooltip } from "../ui";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
@@ -29,6 +29,7 @@ import { FormPopoverDemo } from "./PopoverDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { LoadingToggleSkeletonDemo } from "./SkeletonDemos";
+import { ControlledSliderDemo, FormSliderDemo } from "./SliderDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
 import { Variant } from "./Variant";
 
@@ -995,6 +996,83 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Loading toggle">
                     <LoadingToggleSkeletonDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Slider",
+        render: () => (
+            <>
+                <Variant label="Sizes">
+                    <div className="flex w-full max-w-sm flex-col gap-4">
+                        {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                            <Slider key={size} size={size} aria-label={`Slider (${size})`} defaultValue={50} />
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="States">
+                    <div className="flex w-full max-w-sm flex-col gap-4">
+                        <Slider aria-label="At min" defaultValue={0} />
+                        <Slider aria-label="At max" defaultValue={100} />
+                        <Slider aria-label="Disabled" defaultValue={30} disabled />
+                        <Field invalid>
+                            <Slider aria-label="Invalid" defaultValue={90} />
+                        </Field>
+                    </div>
+                </Variant>
+                <Variant label="Label and value">
+                    <Slider defaultValue={25} className="max-w-sm">
+                        <div className="flex w-full items-center justify-between">
+                            <Slider.Label>Opacity</Slider.Label>
+                            <Slider.Value>{(_, [value]) => `${value}%`}</Slider.Value>
+                        </div>
+                    </Slider>
+                </Variant>
+                <Variant label="Range">
+                    <div className="flex w-full max-w-sm flex-col gap-6">
+                        <Slider
+                            defaultValue={[9, 17]}
+                            min={0}
+                            max={24}
+                            minStepsBetweenValues={1}
+                            getAriaLabel={(i) => (i === 0 ? "Start hour" : "End hour")}
+                        >
+                            <div className="flex w-full items-center justify-between">
+                                <Slider.Label>Working hours</Slider.Label>
+                                <Slider.Value>{(_, [start, end]) => `${start}:00 – ${end}:00`}</Slider.Value>
+                            </div>
+                        </Slider>
+                        <Slider getAriaLabel={(i) => `Stop ${i + 1}`} defaultValue={[20, 50, 80]} />
+                    </div>
+                </Variant>
+                <Variant label="Step and format">
+                    <Slider defaultValue={0.5} min={0} max={1} step={0.05} format={{ style: "percent" }} className="max-w-sm">
+                        <div className="flex w-full items-center justify-between">
+                            <Slider.Label>Zoom</Slider.Label>
+                            <Slider.Value />
+                        </div>
+                    </Slider>
+                </Variant>
+                <Variant label="Vertical">
+                    {(["sm", "md", "lg"] as const).map((size) => (
+                        <Slider key={size} orientation="vertical" size={size} aria-label={`Vertical (${size})`} defaultValue={60} />
+                    ))}
+                    <Slider orientation="vertical" getAriaLabel={(i) => (i === 0 ? "Low" : "High")} defaultValue={[30, 70]} />
+                </Variant>
+                <Variant label="Validation (Field)">
+                    <Field invalid className="max-w-sm">
+                        <Field.Label>Threshold</Field.Label>
+                        <Slider defaultValue={90} />
+                        <Field.Description>Alerts fire above this level.</Field.Description>
+                        <Field.Error match>Must be 80 or lower.</Field.Error>
+                    </Field>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledSliderDemo />
+                </Variant>
+                <Variant label="Form values">
+                    <FormSliderDemo />
                 </Variant>
             </>
         ),
