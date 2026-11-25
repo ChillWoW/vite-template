@@ -5,6 +5,7 @@ Vite template, `v2` branch: a full rework started from an empty history (`main` 
 # Stack
 
 - Vite 8, React 19, TypeScript 7, Tailwind CSS v4 (via `@tailwindcss/vite`, imported in `src/index.css`), oxlint.
+- Class names: use `cn()` from `src/lib/cn.ts` (clsx + tailwind-merge).
 - Package manager: **bun** only. Never use npm/npx/pnpm/yarn; use `bun install`, `bun add [-d]`, `bun run <script>`, `bunx`. Lockfile is `bun.lock`.
 
 # Commands
