@@ -6,6 +6,7 @@ Vite template, `v2` branch: a full rework started from an empty history (`main` 
 
 - Vite 8, React 19, TypeScript 7, Tailwind CSS v4 (via `@tailwindcss/vite`, imported in `src/index.css`), oxlint.
 - Colors: dark-only token set in `@theme` in `src/index.css` (Mantine dark scale, one step deeper). Tailwind's default palette is removed (`--color-*: initial`); use only the tokens: `bg`, `surface`, `raised`, `hover`, `border`, `text`, `muted`, `accent`, `accent-fg`, `success`, `danger`, `warning`, `info`, `black`, `white`, `transparent`, `current` (e.g. `bg-surface`, `text-muted`, `border-border`).
+- UI components live in `src/ui/` (one file per component, named export, re-exported from `src/ui/index.ts`; import via `./ui`).
 - Class names: use `cn()` from `src/lib/cn.ts` (clsx + tailwind-merge).
 - Headless UI primitives: `@base-ui/react` (import per component, e.g. `@base-ui/react/dialog`). `#root` has `isolation: isolate` in `src/index.css` so portaled popups stack correctly.
 - Icons: `@phosphor-icons/react`, using the `*Icon`-suffixed names (e.g. `import { XIcon } from "@phosphor-icons/react"`).
