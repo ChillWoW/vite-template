@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Color tokens: Mantine dark scale, one step deeper. Default Tailwind palette is removed. */
 @theme {
     --color-*: initial;
 
