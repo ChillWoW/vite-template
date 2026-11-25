@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import {
+    BellIcon,
     CopyIcon,
     DotsThreeVerticalIcon,
     EnvelopeSimpleIcon,
@@ -11,18 +12,20 @@ import {
     PaperPlaneRightIcon,
     PlusIcon,
     SunIcon,
+    SlidersHorizontalIcon,
     TextBIcon,
     TextItalicIcon,
     TextStrikethroughIcon,
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Select, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Spinner, Switch, Tooltip } from "../ui";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
 import { ControlledNumberFieldDemo, FormNumberFieldDemo } from "./NumberFieldDemos";
+import { FormPopoverDemo } from "./PopoverDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
@@ -700,6 +703,107 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Form values">
                     <FormNumberFieldDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Popover",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Popover>
+                        <Popover.Trigger render={<Button variant="outline" />}>
+                            <BellIcon />Notifications
+                        </Popover.Trigger>
+                        <Popover.Content>
+                            <Popover.Header>
+                                <Popover.Title>Notifications</Popover.Title>
+                                <Popover.Description>You're all caught up. New activity will show up here.</Popover.Description>
+                            </Popover.Header>
+                        </Popover.Content>
+                    </Popover>
+                </Variant>
+                <Variant label="Sides">
+                    {(["top", "right", "bottom", "left"] as const).map((side) => (
+                        <Popover key={side}>
+                            <Popover.Trigger render={<Button variant="outline" />}>{side}</Popover.Trigger>
+                            <Popover.Content side={side} className="w-auto">
+                                Opens on the {side}.
+                            </Popover.Content>
+                        </Popover>
+                    ))}
+                </Variant>
+                <Variant label="Arrow & close button">
+                    <Popover>
+                        <Popover.Trigger render={<Button variant="outline" />}>With arrow</Popover.Trigger>
+                        <Popover.Content arrow>
+                            <Popover.Header>
+                                <Popover.Title>Arrow</Popover.Title>
+                                <Popover.Description>Points at the trigger and follows the side.</Popover.Description>
+                            </Popover.Header>
+                        </Popover.Content>
+                    </Popover>
+                    <Popover>
+                        <Popover.Trigger render={<Button variant="outline" />}>With close button</Popover.Trigger>
+                        <Popover.Content showCloseButton>
+                            <Popover.Header>
+                                <Popover.Title>Close button</Popover.Title>
+                                <Popover.Description>Escape and outside clicks still close it too.</Popover.Description>
+                            </Popover.Header>
+                        </Popover.Content>
+                    </Popover>
+                </Variant>
+                <Variant label="Settings panel">
+                    <Popover>
+                        <Popover.Trigger render={<Button variant="outline" size="icon-md" aria-label="Display settings" />}>
+                            <SlidersHorizontalIcon />
+                        </Popover.Trigger>
+                        <Popover.Content align="start" className="w-60">
+                            <Popover.Header>
+                                <Popover.Title>Display</Popover.Title>
+                            </Popover.Header>
+                            {[
+                                { label: "Compact mode", on: false },
+                                { label: "Show avatars", on: true },
+                                { label: "Show completed", on: false },
+                            ].map(({ label, on }) => (
+                                <label key={label} className="flex items-center justify-between gap-3">
+                                    {label}
+                                    <Switch size="sm" defaultChecked={on} />
+                                </label>
+                            ))}
+                        </Popover.Content>
+                    </Popover>
+                </Variant>
+                <Variant label="Form (controlled)">
+                    <FormPopoverDemo />
+                </Variant>
+                <Variant label="Options">
+                    <Popover>
+                        <Popover.Trigger openOnHover delay={300} render={<Button variant="link" />}>
+                            Hover card
+                        </Popover.Trigger>
+                        <Popover.Content side="top" arrow>
+                            <Popover.Header>
+                                <Popover.Title>Opens on hover</Popover.Title>
+                                <Popover.Description>Set openOnHover on the trigger; clicking still works.</Popover.Description>
+                            </Popover.Header>
+                        </Popover.Content>
+                    </Popover>
+                    <Popover modal>
+                        <Popover.Trigger render={<Button variant="outline" />}>Modal</Popover.Trigger>
+                        <Popover.Content>
+                            <Popover.Header>
+                                <Popover.Title>Modal popover</Popover.Title>
+                                <Popover.Description>Page scroll and outside clicks are blocked while open.</Popover.Description>
+                            </Popover.Header>
+                        </Popover.Content>
+                    </Popover>
+                    <Popover>
+                        <Popover.Trigger disabled render={<Button variant="outline" />}>Disabled</Popover.Trigger>
+                        <Popover.Content>Hidden</Popover.Content>
+                    </Popover>
                 </Variant>
             </>
         ),

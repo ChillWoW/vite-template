@@ -7,6 +7,7 @@ export * from "./Input";
 export * from "./Menu";
 export * from "./Modal";
 export * from "./NumberField";
+export * from "./Popover";
 export * from "./Portal";
 export * from "./Select";
 export * from "./Spinner";
