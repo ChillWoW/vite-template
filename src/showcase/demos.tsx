@@ -7,6 +7,7 @@ import {
     TrashIcon,
 } from "@phosphor-icons/react";
 import { Button, Field, Input, Spinner } from "../ui";
+import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { Variant } from "./Variant";
 
 export interface Demo {
@@ -206,6 +207,19 @@ export const demos: Demo[] = [
                             </Input.Group>
                         ))}
                     </div>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Portal",
+        render: () => (
+            <>
+                <Variant label="Default (document.body)">
+                    <BodyPortalDemo />
+                </Variant>
+                <Variant label="Custom container">
+                    <ContainerPortalDemo />
                 </Variant>
             </>
         ),

@@ -1,4 +1,5 @@
 export * from "./Button";
 export * from "./Field";
 export * from "./Input";
+export * from "./Portal";
 export * from "./Spinner";
