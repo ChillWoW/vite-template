@@ -6,6 +6,7 @@ export * from "./Field";
 export * from "./Input";
 export * from "./Menu";
 export * from "./Modal";
+export * from "./NumberField";
 export * from "./Portal";
 export * from "./Select";
 export * from "./Spinner";

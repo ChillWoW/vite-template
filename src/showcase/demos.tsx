@@ -17,11 +17,12 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, Select, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Select, Spinner, Switch, Tooltip } from "../ui";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
+import { ControlledNumberFieldDemo, FormNumberFieldDemo } from "./NumberFieldDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
@@ -605,6 +606,100 @@ export const demos: Demo[] = [
                             </Modal.Footer>
                         </Modal.Content>
                     </Modal>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Number Field",
+        render: () => (
+            <>
+                <Variant label="Sizes">
+                    <div className="flex w-full max-w-40 flex-col gap-3">
+                        {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                            <NumberField key={size} size={size} aria-label={`Amount (${size})`} defaultValue={1} />
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="States">
+                    <div className="flex w-full max-w-40 flex-col gap-3">
+                        <NumberField aria-label="Empty" placeholder="0" />
+                        <NumberField aria-label="At max" defaultValue={10} max={10} />
+                        <NumberField aria-label="Disabled" defaultValue={5} disabled />
+                        <NumberField aria-label="Read only" defaultValue={5} readOnly />
+                        <Field invalid>
+                            <NumberField aria-label="Invalid" defaultValue={42} />
+                        </Field>
+                    </div>
+                </Variant>
+                <Variant label="Step, min and max">
+                    <div className="flex w-full max-w-xs flex-col gap-6">
+                        <Field>
+                            <Field.Label>Rating</Field.Label>
+                            <NumberField defaultValue={2.5} min={0} max={5} step={0.5} />
+                            <Field.Description>0-5 in steps of 0.5.</Field.Description>
+                        </Field>
+                        <Field>
+                            <Field.Label>Port</Field.Label>
+                            <NumberField
+                                defaultValue={8080}
+                                min={1}
+                                max={65535}
+                                format={{ useGrouping: false }}
+                            />
+                            <Field.Description>Shift + arrow steps by 10.</Field.Description>
+                        </Field>
+                    </div>
+                </Variant>
+                <Variant label="Formatting">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        <NumberField
+                            aria-label="Price"
+                            defaultValue={19.99}
+                            step={0.01}
+                            min={0}
+                            format={{ style: "currency", currency: "USD" }}
+                        />
+                        <NumberField
+                            aria-label="Discount"
+                            defaultValue={0.15}
+                            step={0.01}
+                            min={0}
+                            max={1}
+                            format={{ style: "percent" }}
+                        />
+                        <NumberField
+                            aria-label="Distance"
+                            defaultValue={42}
+                            format={{ style: "unit", unit: "kilometer" }}
+                        />
+                    </div>
+                </Variant>
+                <Variant label="Scrub area">
+                    <Field className="w-full max-w-40">
+                        <NumberField defaultValue={100} min={0} max={1000}>
+                            <NumberField.ScrubArea>
+                                <Field.Label>Width</Field.Label>
+                            </NumberField.ScrubArea>
+                        </NumberField>
+                        <Field.Description>Drag the label left or right.</Field.Description>
+                    </Field>
+                </Variant>
+                <Variant label="Validation">
+                    <Field validationMode="onBlur" className="w-full max-w-xs">
+                        <Field.Label>Age</Field.Label>
+                        <NumberField required min={18} max={120} allowOutOfRange />
+                        <Field.Description>Required, 18-120. Validated on blur.</Field.Description>
+                        <Field.Error match="valueMissing">Age is required.</Field.Error>
+                        <Field.Error match="rangeUnderflow">You must be at least 18.</Field.Error>
+                        <Field.Error match="rangeOverflow">Enter a realistic age.</Field.Error>
+                    </Field>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledNumberFieldDemo />
+                </Variant>
+                <Variant label="Form values">
+                    <FormNumberFieldDemo />
                 </Variant>
             </>
         ),
