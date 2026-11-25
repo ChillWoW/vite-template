@@ -61,7 +61,7 @@ function ModalContent({
                 <DialogPrimitive.Popup
                     className={withBase(
                         cn(
-                            "relative flex max-h-full w-full flex-col gap-4 rounded-lg border border-border bg-surface p-6 text-text shadow-2xl shadow-black/50 outline-none",
+                            "relative flex max-h-full w-full flex-col gap-4 rounded-lg border border-border bg-surface p-4 text-text shadow-2xl shadow-black/50 outline-none",
                             "transition-[opacity,scale] duration-150 ease-out",
                             "data-starting-style:scale-95 data-starting-style:opacity-0",
                             "data-ending-style:scale-95 data-ending-style:opacity-0",
@@ -82,7 +82,7 @@ function ModalContent({
                         <DialogPrimitive.Close
                             render={<Button variant="ghost" size="icon-sm" />}
                             aria-label="Close"
-                            className="absolute top-3 right-3 text-muted hover:text-text"
+                            className="absolute top-2 right-2 text-muted hover:text-text"
                         >
                             <XIcon />
                         </DialogPrimitive.Close>
@@ -118,7 +118,7 @@ function ModalBody({ className, ...props }: ComponentProps<"div">) {
     return (
         <div
             data-slot="modal-body"
-            className={cn("-mx-6 min-h-0 flex-1 overflow-y-auto px-6 text-sm", className)}
+            className={cn("-mx-4 min-h-0 flex-1 overflow-y-auto px-4 text-sm", className)}
             {...props}
         />
     );
