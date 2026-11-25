@@ -17,7 +17,8 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, ContextMenu, Field, Input, Menu, Modal, Select, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, ContextMenu, Field, Input, Menu, Modal, Select, Spinner, Switch, Tooltip } from "../ui";
+import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
@@ -99,6 +100,63 @@ export const demos: Demo[] = [
                     <Button variant="outline" disabled>Outline</Button>
                     <Button variant="destructive" disabled>Destructive</Button>
                     <Button variant="destructive-outline" disabled>Destructive outline</Button>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Checkbox",
+        render: () => (
+            <>
+                <Variant label="Sizes">
+                    <Checkbox size="xs" aria-label="Extra small" defaultChecked />
+                    <Checkbox size="sm" aria-label="Small" defaultChecked />
+                    <Checkbox size="md" aria-label="Medium" defaultChecked />
+                    <Checkbox size="lg" aria-label="Large" defaultChecked />
+                    <Checkbox size="xl" aria-label="Extra large" defaultChecked />
+                </Variant>
+                <Variant label="States">
+                    <Checkbox aria-label="Unchecked" />
+                    <Checkbox aria-label="Checked" defaultChecked />
+                    <Checkbox aria-label="Indeterminate" indeterminate />
+                    <Checkbox aria-label="Disabled unchecked" disabled />
+                    <Checkbox aria-label="Disabled checked" disabled defaultChecked />
+                    <Checkbox aria-label="Read only" readOnly defaultChecked />
+                </Variant>
+                <Variant label="With label">
+                    <ControlledCheckboxDemo />
+                </Variant>
+                <Variant label="Group with parent">
+                    <ParentCheckboxDemo />
+                </Variant>
+                <Variant label="With description (Field)">
+                    <div className="flex w-full max-w-sm flex-col gap-4">
+                        {[
+                            { label: "Product updates", description: "New features and improvements.", on: true },
+                            { label: "Security alerts", description: "Required for admins.", on: true, disabled: true },
+                        ].map((s) => (
+                            <Field key={s.label} disabled={s.disabled} className="gap-1">
+                                <Field.Label className="flex cursor-pointer items-center gap-2.5 data-disabled:cursor-not-allowed">
+                                    <Checkbox defaultChecked={s.on} />
+                                    {s.label}
+                                </Field.Label>
+                                <Field.Description className="pl-6.5">{s.description}</Field.Description>
+                            </Field>
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="Validation">
+                    <Field validationMode="onChange" className="w-fit">
+                        <Field.Label className="flex cursor-pointer items-center gap-2.5">
+                            <Checkbox required defaultChecked />
+                            I accept the terms
+                        </Field.Label>
+                        <Field.Description>Required. Untick it to see the error.</Field.Description>
+                        <Field.Error match="valueMissing">You must accept the terms.</Field.Error>
+                    </Field>
+                </Variant>
+                <Variant label="Form values">
+                    <FormCheckboxDemo />
                 </Variant>
             </>
         ),
