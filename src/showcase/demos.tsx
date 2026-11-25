@@ -12,8 +12,9 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Field, Input, Spinner, Tooltip } from "../ui";
+import { Button, Field, Input, Spinner, Switch, Tooltip } from "../ui";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
+import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
 import { Variant } from "./Variant";
 
 export interface Demo {
@@ -248,6 +249,58 @@ export const demos: Demo[] = [
                     <Spinner className="text-success" />
                     <Spinner className="text-warning" />
                     <Spinner className="text-danger" />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Switch",
+        render: () => (
+            <>
+                <Variant label="Sizes">
+                    <Switch size="sm" aria-label="Small" defaultChecked />
+                    <Switch size="md" aria-label="Medium" defaultChecked />
+                    <Switch size="lg" aria-label="Large" defaultChecked />
+                </Variant>
+                <Variant label="States">
+                    <Switch aria-label="Off" />
+                    <Switch aria-label="On" defaultChecked />
+                    <Switch aria-label="Disabled off" disabled />
+                    <Switch aria-label="Disabled on" disabled defaultChecked />
+                    <Switch aria-label="Read only" readOnly defaultChecked />
+                </Variant>
+                <Variant label="With label">
+                    <ControlledSwitchDemo />
+                </Variant>
+                <Variant label="Settings (Field)">
+                    <div className="flex w-full max-w-sm flex-col divide-y divide-border">
+                        {[
+                            { label: "Push notifications", description: "Mentions and direct messages.", on: true },
+                            { label: "Email digest", description: "A weekly summary of activity.", on: false },
+                            { label: "Beta features", description: "Managed by your admin.", on: false, disabled: true },
+                        ].map((s) => (
+                            <Field key={s.label} disabled={s.disabled} className="py-3 first:pt-0 last:pb-0">
+                                <Field.Label className="flex w-full cursor-pointer items-center justify-between gap-4 data-disabled:cursor-not-allowed">
+                                    {s.label}
+                                    <Switch defaultChecked={s.on} />
+                                </Field.Label>
+                                <Field.Description>{s.description}</Field.Description>
+                            </Field>
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="Validation">
+                    <Field validationMode="onChange" className="w-fit">
+                        <Field.Label className="flex cursor-pointer items-center gap-3">
+                            <Switch required defaultChecked />
+                            I accept the terms
+                        </Field.Label>
+                        <Field.Description>Required. Turn it off to see the error.</Field.Description>
+                        <Field.Error match="valueMissing">You must accept the terms.</Field.Error>
+                    </Field>
+                </Variant>
+                <Variant label="Form values">
+                    <FormSwitchDemo />
                 </Variant>
             </>
         ),
