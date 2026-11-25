@@ -31,6 +31,7 @@ import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
+import { DiscardModalStackDemo, PushPopModalStackDemo } from "./ModalStackDemos";
 import { ControlledNumberFieldDemo, FormNumberFieldDemo } from "./NumberFieldDemos";
 import { FormPopoverDemo } from "./PopoverDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
@@ -764,6 +765,19 @@ export const demos: Demo[] = [
                             </Modal.Footer>
                         </Modal.Content>
                     </Modal>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Modal Stack",
+        render: () => (
+            <>
+                <Variant label="Push and pop">
+                    <PushPopModalStackDemo />
+                </Variant>
+                <Variant label="Confirm on top (close a lower modal by id)">
+                    <DiscardModalStackDemo />
                 </Variant>
             </>
         ),
