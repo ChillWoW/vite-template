@@ -17,5 +17,6 @@ export * from "./Skeleton";
 export * from "./Slider";
 export * from "./Spinner";
 export * from "./Switch";
+export * from "./Textarea";
 export * from "./Toggle";
 export * from "./Tooltip";

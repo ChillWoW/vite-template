@@ -22,7 +22,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
+import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Textarea, Toggle, Tooltip } from "../ui";
 import { ControlledAutocompleteDemo, FormAutocompleteDemo } from "./AutocompleteDemos";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
@@ -36,6 +36,7 @@ import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./Sele
 import { LoadingToggleSkeletonDemo } from "./SkeletonDemos";
 import { ControlledSliderDemo, FormSliderDemo } from "./SliderDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
+import { CharacterCountTextareaDemo } from "./TextareaDemos";
 import { ControlledToggleDemo, ControlledToggleGroupDemo } from "./ToggleDemos";
 import { Variant } from "./Variant";
 
@@ -1366,6 +1367,56 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Form values">
                     <FormSwitchDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Textarea",
+        render: () => (
+            <>
+                <Variant label="Sizes">
+                    <div className="flex w-full max-w-sm flex-col gap-3">
+                        {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                            <Textarea key={size} size={size} rows={2} placeholder={`Size ${size}`} />
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="States">
+                    <div className="flex w-full max-w-sm flex-col gap-3">
+                        <Textarea defaultValue="Filled with some text that wraps onto more than one line when the field is narrow enough." />
+                        <Textarea placeholder="Disabled" disabled />
+                        <Textarea defaultValue="Read only" readOnly />
+                        <Textarea defaultValue="Invalid" aria-invalid />
+                    </div>
+                </Variant>
+                <Variant label="Auto resize">
+                    <Textarea
+                        className="max-h-48 max-w-sm"
+                        autoResize
+                        placeholder="Type a few lines; the field grows up to 12rem, then scrolls."
+                    />
+                </Variant>
+                <Variant label="Fixed (no resize)">
+                    <Textarea className="max-w-sm resize-none" rows={4} placeholder="Fixed at 4 rows" />
+                </Variant>
+                <Variant label="With Field">
+                    <div className="flex w-full max-w-sm flex-col gap-6">
+                        <Field validationMode="onBlur">
+                            <Field.Label>Bio</Field.Label>
+                            <Textarea required minLength={10} placeholder="Tell us about yourself" />
+                            <Field.Description>At least 10 characters.</Field.Description>
+                            <Field.Error match="valueMissing">Bio is required.</Field.Error>
+                            <Field.Error match="tooShort">Bio is too short.</Field.Error>
+                        </Field>
+                        <Field disabled>
+                            <Field.Label>Notes</Field.Label>
+                            <Textarea defaultValue="Locked by your admin." />
+                        </Field>
+                    </div>
+                </Variant>
+                <Variant label="Character count (controlled)">
+                    <CharacterCountTextareaDemo />
                 </Variant>
             </>
         ),
