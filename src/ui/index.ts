@@ -1,5 +1,6 @@
 export * from "./Button";
 export * from "./Checkbox";
+export * from "./Collapsible";
 export * from "./ContextMenu";
 export * from "./Field";
 export * from "./Input";

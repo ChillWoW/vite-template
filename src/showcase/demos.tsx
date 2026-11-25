@@ -17,8 +17,9 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, ContextMenu, Field, Input, Menu, Modal, Select, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, Select, Spinner, Switch, Tooltip } from "../ui";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
+import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
@@ -157,6 +158,85 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Form values">
                     <FormCheckboxDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Collapsible",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Collapsible className="w-full max-w-sm">
+                        <Collapsible.Trigger>Show details</Collapsible.Trigger>
+                        <Collapsible.Panel>
+                            <p className="pt-2 text-sm text-muted">
+                                The panel animates its height, so content of any size opens smoothly.
+                            </p>
+                        </Collapsible.Panel>
+                    </Collapsible>
+                </Variant>
+                <Variant label="Default open">
+                    <Collapsible defaultOpen className="w-full max-w-sm">
+                        <Collapsible.Trigger>Release notes</Collapsible.Trigger>
+                        <Collapsible.Panel>
+                            <ul className="list-disc pt-2 pl-5 text-sm text-muted">
+                                <li>Faster startup</li>
+                                <li>New keyboard shortcuts</li>
+                                <li>Bug fixes</li>
+                            </ul>
+                        </Collapsible.Panel>
+                    </Collapsible>
+                </Variant>
+                <Variant label="Card">
+                    <Collapsible className="w-full max-w-sm rounded-lg border border-border bg-raised">
+                        <Collapsible.Trigger className="justify-between rounded-lg px-4 py-3 hover:bg-hover">
+                            Recovery keys
+                        </Collapsible.Trigger>
+                        <Collapsible.Panel>
+                            <div className="flex flex-col gap-1 border-t border-border px-4 py-3 font-mono text-xs text-muted">
+                                <span>alien-bean-pasta</span>
+                                <span>wild-orange-fork</span>
+                                <span>quiet-river-lamp</span>
+                            </div>
+                        </Collapsible.Panel>
+                    </Collapsible>
+                </Variant>
+                <Variant label="Button trigger">
+                    <Collapsible className="w-full max-w-sm items-start gap-2">
+                        <Collapsible.Trigger render={<Button variant="outline" size="sm" />}>Filters</Collapsible.Trigger>
+                        <Collapsible.Panel className="w-full">
+                            <div className="flex flex-col gap-2 text-sm text-text">
+                                <label className="flex cursor-pointer items-center gap-2.5">
+                                    <Checkbox defaultChecked />
+                                    In stock
+                                </label>
+                                <label className="flex cursor-pointer items-center gap-2.5">
+                                    <Checkbox />
+                                    On sale
+                                </label>
+                            </div>
+                        </Collapsible.Panel>
+                    </Collapsible>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledCollapsibleDemo />
+                </Variant>
+                <Variant label="Disabled">
+                    <Collapsible disabled>
+                        <Collapsible.Trigger>Locked section</Collapsible.Trigger>
+                        <Collapsible.Panel>
+                            <p className="pt-2 text-sm text-muted">Hidden.</p>
+                        </Collapsible.Panel>
+                    </Collapsible>
+                </Variant>
+                <Variant label="Find in page (hiddenUntilFound)">
+                    <Collapsible className="w-full max-w-sm">
+                        <Collapsible.Trigger>Search me with Ctrl+F</Collapsible.Trigger>
+                        <Collapsible.Panel hiddenUntilFound>
+                            <p className="pt-2 text-sm text-muted">Searching for "pineapple" opens this panel.</p>
+                        </Collapsible.Panel>
+                    </Collapsible>
                 </Variant>
             </>
         ),
