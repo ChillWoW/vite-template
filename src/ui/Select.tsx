@@ -62,7 +62,7 @@ function SelectTrigger({ className, children, ...props }: SelectPrimitive.Trigge
             data-slot="select-trigger"
             className={withBase(
                 cn(
-                    "flex w-full min-w-0 cursor-default items-center justify-between rounded-md border border-border bg-transparent text-left text-text outline-none select-none transition-[border-color] duration-150 ease-out",
+                    "flex w-full min-w-0 cursor-pointer items-center justify-between rounded-md border border-border bg-transparent text-left text-text outline-none select-none transition-[border-color] duration-150 ease-out",
                     "focus-visible:border-muted data-popup-open:border-muted",
                     "aria-invalid:border-danger data-invalid:border-danger",
                     "data-disabled:cursor-not-allowed data-disabled:opacity-50",
@@ -174,7 +174,7 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
         <SelectPrimitive.Item
             className={withBase(
                 cn(
-                    "relative flex cursor-default items-center gap-2 rounded-sm pr-8 pl-2 text-text outline-none select-none",
+                    "relative flex cursor-pointer items-center gap-2 rounded-sm pr-8 pl-2 text-text outline-none select-none",
                     "data-highlighted:bg-hover data-disabled:pointer-events-none data-disabled:opacity-50",
                     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted",
                     itemSizes[size],
