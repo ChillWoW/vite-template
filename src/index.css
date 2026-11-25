@@ -24,6 +24,25 @@
     --color-white: #ffffff;
     --color-transparent: transparent;
     --color-current: currentColor;
+
+    --animate-skeleton-shimmer: skeleton-shimmer 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    --animate-skeleton-pulse: skeleton-pulse 1.6s ease-in-out infinite;
+
+    /* Gradient tile is 200vw wide with the highlight at its center: sweeps across the viewport, then rests offscreen. */
+    @keyframes skeleton-shimmer {
+        from {
+            background-position: -200vw 0;
+        }
+        to {
+            background-position: 0 0;
+        }
+    }
+
+    @keyframes skeleton-pulse {
+        50% {
+            opacity: 0.45;
+        }
+    }
 }
 
 :root {

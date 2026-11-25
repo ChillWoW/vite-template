@@ -19,7 +19,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Spinner, Switch, Tooltip } from "../ui";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
@@ -28,6 +28,7 @@ import { ControlledNumberFieldDemo, FormNumberFieldDemo } from "./NumberFieldDem
 import { FormPopoverDemo } from "./PopoverDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
+import { LoadingToggleSkeletonDemo } from "./SkeletonDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
 import { Variant } from "./Variant";
 
@@ -942,6 +943,58 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Form (Field)">
                     <FormSelectDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Skeleton",
+        render: () => (
+            <>
+                <Variant label="Shapes">
+                    <Skeleton className="h-4 w-40" />
+                    <Skeleton className="size-12 rounded-full" />
+                    <Skeleton className="h-20 w-32" />
+                    <Skeleton.Text className="max-w-xs" />
+                </Variant>
+                <Variant label="Animations">
+                    {(["shimmer", "pulse", "none"] as const).map((animation) => (
+                        <div key={animation} className="flex w-48 flex-col gap-2">
+                            <span className="text-xs text-muted">{animation}</span>
+                            <Skeleton animation={animation} className="h-24 w-full" />
+                            <Skeleton.Text animation={animation} lines={2} />
+                        </div>
+                    ))}
+                </Variant>
+                <Variant label="Card">
+                    <div className="flex w-full max-w-xs flex-col gap-4 rounded-md border border-border bg-raised/40 p-4">
+                        <Skeleton className="aspect-video w-full" />
+                        <div className="flex flex-col gap-2">
+                            <Skeleton className="h-4 w-2/3" />
+                            <Skeleton.Text lines={2} />
+                        </div>
+                        <div className="flex gap-2">
+                            <Skeleton className="h-8 w-20" />
+                            <Skeleton className="h-8 w-20" />
+                        </div>
+                    </div>
+                </Variant>
+                <Variant label="List">
+                    <div className="flex w-full max-w-sm flex-col divide-y divide-border">
+                        {[0, 1, 2, 3].map((i) => (
+                            <div key={i} className="flex items-center gap-3 py-3">
+                                <Skeleton className="size-9 rounded-full" />
+                                <div className="flex flex-1 flex-col gap-2">
+                                    <Skeleton className="h-3 w-1/3" />
+                                    <Skeleton className="h-3 w-3/4" />
+                                </div>
+                                <Skeleton className="h-6 w-12" />
+                            </div>
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="Loading toggle">
+                    <LoadingToggleSkeletonDemo />
                 </Variant>
             </>
         ),
