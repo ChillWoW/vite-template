@@ -10,6 +10,7 @@ export * from "./Modal";
 export * from "./NumberField";
 export * from "./Popover";
 export * from "./Portal";
+export * from "./SegmentedControl";
 export * from "./Select";
 export * from "./Separator";
 export * from "./Skeleton";

@@ -22,7 +22,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Separator, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
+import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
 import { ControlledAutocompleteDemo, FormAutocompleteDemo } from "./AutocompleteDemos";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
@@ -31,6 +31,7 @@ import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
 import { ControlledNumberFieldDemo, FormNumberFieldDemo } from "./NumberFieldDemos";
 import { FormPopoverDemo } from "./PopoverDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
+import { ControlledSegmentedControlDemo, FormSegmentedControlDemo } from "./SegmentedControlDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { LoadingToggleSkeletonDemo } from "./SkeletonDemos";
 import { ControlledSliderDemo, FormSliderDemo } from "./SliderDemos";
@@ -919,6 +920,81 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Custom container">
                     <ContainerPortalDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Segmented Control",
+        render: () => (
+            <>
+                <Variant label="Default">
+                    <SegmentedControl defaultValue="week" aria-label="Range">
+                        <SegmentedControl.Item value="day">Day</SegmentedControl.Item>
+                        <SegmentedControl.Item value="week">Week</SegmentedControl.Item>
+                        <SegmentedControl.Item value="month">Month</SegmentedControl.Item>
+                        <SegmentedControl.Item value="year">Year</SegmentedControl.Item>
+                    </SegmentedControl>
+                </Variant>
+                <Variant label="Sizes">
+                    {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                        <SegmentedControl key={size} size={size} defaultValue="on" aria-label={`Size ${size}`}>
+                            <SegmentedControl.Item value="off">Off</SegmentedControl.Item>
+                            <SegmentedControl.Item value="on">On</SegmentedControl.Item>
+                            <SegmentedControl.Item value="auto">Auto</SegmentedControl.Item>
+                        </SegmentedControl>
+                    ))}
+                </Variant>
+                <Variant label="With icons">
+                    <SegmentedControl defaultValue="dark" aria-label="Theme">
+                        <SegmentedControl.Item value="light"><SunIcon />Light</SegmentedControl.Item>
+                        <SegmentedControl.Item value="dark"><MoonIcon />Dark</SegmentedControl.Item>
+                        <SegmentedControl.Item value="system"><MonitorIcon />System</SegmentedControl.Item>
+                    </SegmentedControl>
+                </Variant>
+                <Variant label="Icon only">
+                    {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                        <SegmentedControl key={size} size={size} defaultValue="center" aria-label={`Text alignment (${size})`}>
+                            <SegmentedControl.Item value="left" iconOnly aria-label="Align left"><TextAlignLeftIcon /></SegmentedControl.Item>
+                            <SegmentedControl.Item value="center" iconOnly aria-label="Align center"><TextAlignCenterIcon /></SegmentedControl.Item>
+                            <SegmentedControl.Item value="right" iconOnly aria-label="Align right"><TextAlignRightIcon /></SegmentedControl.Item>
+                        </SegmentedControl>
+                    ))}
+                </Variant>
+                <Variant label="Full width">
+                    <SegmentedControl defaultValue="all" aria-label="Filter" className="w-full max-w-sm">
+                        <SegmentedControl.Item value="all">All</SegmentedControl.Item>
+                        <SegmentedControl.Item value="unread">Unread</SegmentedControl.Item>
+                        <SegmentedControl.Item value="mentions">Mentions</SegmentedControl.Item>
+                    </SegmentedControl>
+                </Variant>
+                <Variant label="States">
+                    <SegmentedControl aria-label="No default">
+                        <SegmentedControl.Item value="a">None</SegmentedControl.Item>
+                        <SegmentedControl.Item value="b">Selected</SegmentedControl.Item>
+                        <SegmentedControl.Item value="c">Yet</SegmentedControl.Item>
+                    </SegmentedControl>
+                    <SegmentedControl defaultValue="free" aria-label="Plan (disabled item)">
+                        <SegmentedControl.Item value="free">Free</SegmentedControl.Item>
+                        <SegmentedControl.Item value="pro">Pro</SegmentedControl.Item>
+                        <SegmentedControl.Item value="team" disabled>Team</SegmentedControl.Item>
+                    </SegmentedControl>
+                    <SegmentedControl disabled defaultValue="pro" aria-label="Plan (disabled)">
+                        <SegmentedControl.Item value="free">Free</SegmentedControl.Item>
+                        <SegmentedControl.Item value="pro">Pro</SegmentedControl.Item>
+                        <SegmentedControl.Item value="team">Team</SegmentedControl.Item>
+                    </SegmentedControl>
+                    <SegmentedControl readOnly defaultValue="team" aria-label="Plan (read only)">
+                        <SegmentedControl.Item value="free">Free</SegmentedControl.Item>
+                        <SegmentedControl.Item value="pro">Pro</SegmentedControl.Item>
+                        <SegmentedControl.Item value="team">Team</SegmentedControl.Item>
+                    </SegmentedControl>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledSegmentedControlDemo />
+                </Variant>
+                <Variant label="Form values">
+                    <FormSegmentedControlDemo />
                 </Variant>
             </>
         ),
