@@ -4,18 +4,23 @@ import {
     DotsThreeVerticalIcon,
     EnvelopeSimpleIcon,
     FloppyDiskIcon,
+    GlobeIcon,
     MagnifyingGlassIcon,
+    MonitorIcon,
+    MoonIcon,
     PaperPlaneRightIcon,
     PlusIcon,
+    SunIcon,
     TextBIcon,
     TextItalicIcon,
     TextStrikethroughIcon,
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, ContextMenu, Field, Input, Menu, Spinner, Switch, Tooltip } from "../ui";
+import { Button, ContextMenu, Field, Input, Menu, Select, Spinner, Switch, Tooltip } from "../ui";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
+import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
 import { Variant } from "./Variant";
 
@@ -23,6 +28,25 @@ export interface Demo {
     name: string;
     render: () => ReactNode;
 }
+
+const fonts = { sans: "Sans-serif", serif: "Serif", mono: "Monospace", cursive: "Cursive" };
+const fontItems = Object.entries(fonts).map(([key, label]) => (
+    <Select.Item key={key} value={key}>{label}</Select.Item>
+));
+const themes = { light: "Light", dark: "Dark", system: "System" };
+const timezones = {
+    london: "London (GMT)",
+    paris: "Paris (CET)",
+    helsinki: "Helsinki (EET)",
+    "new-york": "New York (EST)",
+    chicago: "Chicago (CST)",
+    "los-angeles": "Los Angeles (PST)",
+};
+const countries = [
+    "Argentina", "Australia", "Austria", "Belgium", "Brazil", "Canada", "Chile", "Denmark",
+    "Estonia", "Finland", "France", "Germany", "Iceland", "Ireland", "Italy", "Japan",
+    "Mexico", "Netherlands", "New Zealand", "Norway", "Poland", "Portugal", "Spain", "Sweden",
+];
 
 // Add new components here; the sidebar picks them up automatically.
 export const demos: Demo[] = [
@@ -341,6 +365,131 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Custom container">
                     <ContainerPortalDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Select",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Select items={fonts} defaultValue="sans">
+                        <Select.Trigger className="w-44" aria-label="Font">
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content>{fontItems}</Select.Content>
+                    </Select>
+                    <Select items={fonts}>
+                        <Select.Trigger className="w-44" aria-label="Font">
+                            <Select.Value placeholder="Select a font" />
+                        </Select.Trigger>
+                        <Select.Content>{fontItems}</Select.Content>
+                    </Select>
+                </Variant>
+                <Variant label="Sizes">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                            <Select key={size} size={size} items={fonts} defaultValue="sans">
+                                <Select.Trigger aria-label={`Font (${size})`}>
+                                    <Select.Value />
+                                </Select.Trigger>
+                                <Select.Content>{fontItems}</Select.Content>
+                            </Select>
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="Icons & groups">
+                    <Select items={themes} defaultValue="system">
+                        <Select.Trigger className="w-44" aria-label="Theme">
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content>
+                            <Select.Item value="light"><SunIcon />Light</Select.Item>
+                            <Select.Item value="dark"><MoonIcon />Dark</Select.Item>
+                            <Select.Item value="system"><MonitorIcon />System</Select.Item>
+                        </Select.Content>
+                    </Select>
+                    <Select items={timezones}>
+                        <Select.Trigger className="w-60" aria-label="Timezone">
+                            <GlobeIcon />
+                            <Select.Value placeholder="Select a timezone" />
+                        </Select.Trigger>
+                        <Select.Content>
+                            <Select.Group>
+                                <Select.Label>Europe</Select.Label>
+                                <Select.Item value="london">London (GMT)</Select.Item>
+                                <Select.Item value="paris">Paris (CET)</Select.Item>
+                                <Select.Item value="helsinki">Helsinki (EET)</Select.Item>
+                            </Select.Group>
+                            <Select.Separator />
+                            <Select.Group>
+                                <Select.Label>Americas</Select.Label>
+                                <Select.Item value="new-york">New York (EST)</Select.Item>
+                                <Select.Item value="chicago">Chicago (CST)</Select.Item>
+                                <Select.Item value="los-angeles">Los Angeles (PST)</Select.Item>
+                            </Select.Group>
+                        </Select.Content>
+                    </Select>
+                </Variant>
+                <Variant label="Long list (scrolls)">
+                    <Select defaultValue="Finland">
+                        <Select.Trigger className="w-52" aria-label="Country">
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content className="max-h-72">
+                            {countries.map((c) => (
+                                <Select.Item key={c} value={c}>{c}</Select.Item>
+                            ))}
+                        </Select.Content>
+                    </Select>
+                </Variant>
+                <Variant label="Aligned with trigger">
+                    <Select items={fonts} defaultValue="serif">
+                        <Select.Trigger className="w-44" aria-label="Font">
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content alignItemWithTrigger>{fontItems}</Select.Content>
+                    </Select>
+                </Variant>
+                <Variant label="States">
+                    <Select items={fonts} defaultValue="mono" disabled>
+                        <Select.Trigger className="w-44" aria-label="Disabled">
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content>{fontItems}</Select.Content>
+                    </Select>
+                    <Select items={fonts} defaultValue="mono" readOnly>
+                        <Select.Trigger className="w-44" aria-label="Read only">
+                            <Select.Value />
+                        </Select.Trigger>
+                        <Select.Content>{fontItems}</Select.Content>
+                    </Select>
+                    <Select items={fonts}>
+                        <Select.Trigger className="w-44" aria-label="Invalid" aria-invalid>
+                            <Select.Value placeholder="Invalid" />
+                        </Select.Trigger>
+                        <Select.Content>{fontItems}</Select.Content>
+                    </Select>
+                    <Select items={fonts}>
+                        <Select.Trigger className="w-44" aria-label="Disabled items">
+                            <Select.Value placeholder="Disabled items" />
+                        </Select.Trigger>
+                        <Select.Content>
+                            {Object.entries(fonts).map(([key, label], i) => (
+                                <Select.Item key={key} value={key} disabled={i % 2 === 1}>{label}</Select.Item>
+                            ))}
+                        </Select.Content>
+                    </Select>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledSelectDemo />
+                </Variant>
+                <Variant label="Multiple">
+                    <MultipleSelectDemo />
+                </Variant>
+                <Variant label="Form (Field)">
+                    <FormSelectDemo />
                 </Variant>
             </>
         ),
