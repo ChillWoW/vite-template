@@ -22,7 +22,8 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
+import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
+import { ControlledAutocompleteDemo, FormAutocompleteDemo } from "./AutocompleteDemos";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
@@ -61,8 +62,103 @@ const countries = [
     "Mexico", "Netherlands", "New Zealand", "Norway", "Poland", "Portugal", "Spain", "Sweden",
 ];
 
+const countryItem = (c: string) => <Autocomplete.Item key={c} value={c}>{c}</Autocomplete.Item>;
+const commitTags = [
+    { value: "Types", items: ["feat", "fix", "docs", "refactor", "chore"] },
+    { value: "Scopes", items: ["ui", "showcase", "deps", "build"] },
+];
+
 // Add new components here; the sidebar picks them up automatically.
 export const demos: Demo[] = [
+    {
+        name: "Autocomplete",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Autocomplete items={countries}>
+                        <Autocomplete.Input className="w-60" placeholder="Search countries" aria-label="Country" />
+                        <Autocomplete.Content empty="No countries found.">{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                </Variant>
+                <Variant label="Sizes">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                            <Autocomplete key={size} size={size} items={countries} defaultValue="Finland">
+                                <Autocomplete.Input
+                                    icon={<MagnifyingGlassIcon />}
+                                    showTrigger
+                                    placeholder={`Country (${size})`}
+                                    aria-label={`Country (${size})`}
+                                />
+                                <Autocomplete.Content empty="No countries found.">{countryItem}</Autocomplete.Content>
+                            </Autocomplete>
+                        ))}
+                    </div>
+                </Variant>
+                <Variant label="Icon & trigger">
+                    <Autocomplete items={countries}>
+                        <Autocomplete.Input
+                            className="w-60"
+                            icon={<GlobeIcon />}
+                            showTrigger
+                            placeholder="Country"
+                            aria-label="Country"
+                        />
+                        <Autocomplete.Content empty="No countries found.">{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                    <Autocomplete items={countries} openOnInputClick>
+                        <Autocomplete.Input className="w-60" placeholder="Opens on click" aria-label="Country" />
+                        <Autocomplete.Content empty="No countries found.">{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                </Variant>
+                <Variant label="Grouped">
+                    <Autocomplete items={commitTags}>
+                        <Autocomplete.Input className="w-60" placeholder="Type or scope" aria-label="Commit tag" />
+                        <Autocomplete.Content empty="No matches.">
+                            {(group: (typeof commitTags)[number]) => (
+                                <Autocomplete.Group key={group.value} items={group.items}>
+                                    <Autocomplete.Label>{group.value}</Autocomplete.Label>
+                                    <Autocomplete.Collection>
+                                        {(tag: string) => <Autocomplete.Item key={tag} value={tag}>{tag}</Autocomplete.Item>}
+                                    </Autocomplete.Collection>
+                                </Autocomplete.Group>
+                            )}
+                        </Autocomplete.Content>
+                    </Autocomplete>
+                </Variant>
+                <Variant label="Inline completion & auto highlight">
+                    <Autocomplete items={countries} mode="both">
+                        <Autocomplete.Input className="w-60" placeholder="Arrow keys fill the input" aria-label="Country" />
+                        <Autocomplete.Content>{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                    <Autocomplete items={countries} autoHighlight limit={5}>
+                        <Autocomplete.Input className="w-60" placeholder="Enter picks first (max 5)" aria-label="Country" />
+                        <Autocomplete.Content>{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                </Variant>
+                <Variant label="States">
+                    <Autocomplete items={countries} defaultValue="Finland" disabled>
+                        <Autocomplete.Input className="w-52" showTrigger aria-label="Disabled" />
+                        <Autocomplete.Content>{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                    <Autocomplete items={countries} defaultValue="Finland" readOnly>
+                        <Autocomplete.Input className="w-52" aria-label="Read only" />
+                        <Autocomplete.Content>{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                    <Autocomplete items={countries}>
+                        <Autocomplete.Input className="w-52" placeholder="Invalid" aria-label="Invalid" aria-invalid />
+                        <Autocomplete.Content>{countryItem}</Autocomplete.Content>
+                    </Autocomplete>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledAutocompleteDemo />
+                </Variant>
+                <Variant label="Form (Field)">
+                    <FormAutocompleteDemo />
+                </Variant>
+            </>
+        ),
+    },
     {
         name: "Button",
         render: () => (
