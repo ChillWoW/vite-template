@@ -1,5 +1,36 @@
 @import "tailwindcss";
 
+/* Color tokens: Mantine dark scale, one step deeper. Default Tailwind palette is removed. */
+@theme {
+    --color-*: initial;
+
+    --color-bg: #1f1f1f;
+    --color-surface: #242424;
+    --color-raised: #2e2e2e;
+    --color-hover: #3b3b3b;
+    --color-border: #424242;
+
+    --color-text: #c9c9c9;
+    --color-muted: #828282;
+
+    --color-accent: #f5f5f5;
+    --color-accent-fg: #141414;
+
+    --color-success: #51cf66;
+    --color-danger: #ff6b6b;
+    --color-warning: #fcc419;
+    --color-info: #339af0;
+
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-transparent: transparent;
+    --color-current: currentColor;
+}
+
+:root {
+    color-scheme: dark;
+}
+
 /* Base UI: portaled popups stack above app content; iOS Safari backdrop fix */
 #root {
     isolation: isolate;
@@ -7,4 +38,6 @@
 
 body {
     position: relative;
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
