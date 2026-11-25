@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Vite template, `v2` branch: a full rework started from an empty history (`main` holds the old version).
+Vite + React + TypeScript + Tailwind template with a set of ready-made UI components in `src/ui/`.
 
 # Stack
 

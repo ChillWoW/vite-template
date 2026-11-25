@@ -13,7 +13,7 @@ Vite + React + TypeScript + Tailwind CSS v4 starter with a set of ready-made UI 
 ## Getting started
 
 ```sh
-bunx degit ChillWoW/vite-template#v2 my-app
+bunx degit ChillWoW/vite-template my-app
 cd my-app
 bun install
 bun run dev
@@ -46,3 +46,7 @@ Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Kbd, Men
 ```tsx
 import { Button } from "./ui";
 ```
+
+## License
+
+[MIT](LICENSE)
