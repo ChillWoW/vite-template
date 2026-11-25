@@ -1,12 +1,18 @@
 import type { ReactNode } from "react";
 import {
+    CopyIcon,
     EnvelopeSimpleIcon,
+    FloppyDiskIcon,
     MagnifyingGlassIcon,
     PaperPlaneRightIcon,
     PlusIcon,
+    TextBIcon,
+    TextItalicIcon,
+    TextStrikethroughIcon,
+    TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Field, Input, Spinner } from "../ui";
+import { Button, Field, Input, Spinner, Tooltip } from "../ui";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { Variant } from "./Variant";
 
@@ -242,6 +248,95 @@ export const demos: Demo[] = [
                     <Spinner className="text-success" />
                     <Spinner className="text-warning" />
                     <Spinner className="text-danger" />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Tooltip",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Tooltip content="Add item">
+                        <Button size="icon-md" variant="outline" aria-label="Add item"><PlusIcon /></Button>
+                    </Tooltip>
+                    <Tooltip content="Copy link">
+                        <Button size="icon-md" variant="outline" aria-label="Copy link"><CopyIcon /></Button>
+                    </Tooltip>
+                    <Tooltip content="Delete">
+                        <Button size="icon-md" variant="destructive-outline" aria-label="Delete"><TrashIcon /></Button>
+                    </Tooltip>
+                </Variant>
+                <Variant label="Sides">
+                    {(["top", "right", "bottom", "left"] as const).map((side) => (
+                        <Tooltip key={side} content={`On the ${side}`} side={side}>
+                            <Button variant="outline">{side}</Button>
+                        </Tooltip>
+                    ))}
+                </Variant>
+                <Variant label="Delay">
+                    {[0, 300, 600, 1200].map((delay) => (
+                        <Tooltip key={delay} content={`Opened after ${delay}ms`} delay={delay}>
+                            <Button variant="outline">{delay}ms</Button>
+                        </Tooltip>
+                    ))}
+                    <Tooltip content="Lingers for 500ms" delay={0} closeDelay={500}>
+                        <Button variant="outline">500ms close delay</Button>
+                    </Tooltip>
+                </Variant>
+                <Variant label="Grouped (Provider)">
+                    <Tooltip.Provider delay={400}>
+                        <div className="flex gap-1 rounded-md border border-border p-1">
+                            <Tooltip content="Bold">
+                                <Button size="icon-sm" variant="ghost" aria-label="Bold"><TextBIcon /></Button>
+                            </Tooltip>
+                            <Tooltip content="Italic">
+                                <Button size="icon-sm" variant="ghost" aria-label="Italic"><TextItalicIcon /></Button>
+                            </Tooltip>
+                            <Tooltip content="Underline">
+                                <Button size="icon-sm" variant="ghost" aria-label="Underline"><TextUnderlineIcon /></Button>
+                            </Tooltip>
+                            <Tooltip content="Strikethrough">
+                                <Button size="icon-sm" variant="ghost" aria-label="Strikethrough"><TextStrikethroughIcon /></Button>
+                            </Tooltip>
+                        </div>
+                    </Tooltip.Provider>
+                </Variant>
+                <Variant label="Rich content (compound)">
+                    <Tooltip>
+                        <Tooltip.Trigger render={<Button variant="outline" />}>
+                            <FloppyDiskIcon />Save
+                        </Tooltip.Trigger>
+                        <Tooltip.Content side="bottom" className="flex items-center gap-2">
+                            Save changes
+                            <kbd className="rounded border border-border bg-surface px-1 font-sans text-[10px] text-muted">
+                                Ctrl S
+                            </kbd>
+                        </Tooltip.Content>
+                    </Tooltip>
+                    <Tooltip>
+                        <Tooltip.Trigger render={<Button variant="link" />}>What's this?</Tooltip.Trigger>
+                        <Tooltip.Content className="px-3 py-2">
+                            <p className="font-medium">Longer tooltips wrap</p>
+                            <p className="text-muted">
+                                Content is capped at max-w-xs, so a sentence or two stays readable.
+                            </p>
+                        </Tooltip.Content>
+                    </Tooltip>
+                </Variant>
+                <Variant label="Options">
+                    <Tooltip content="With arrow" arrow>
+                        <Button variant="outline">Arrow</Button>
+                    </Tooltip>
+                    <Tooltip content="Follows the cursor" trackCursorAxis="x" disableHoverablePopup>
+                        <Button variant="outline" className="w-64">Track cursor (x)</Button>
+                    </Tooltip>
+                    <Tooltip content="Click me to close" closeOnClick>
+                        <Button variant="outline">Close on click</Button>
+                    </Tooltip>
+                    <Tooltip content="You won't see this" disabled>
+                        <Button variant="outline">Disabled tooltip</Button>
+                    </Tooltip>
                 </Variant>
             </>
         ),
