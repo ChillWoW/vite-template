@@ -6,6 +6,10 @@ import { cn } from "../lib/cn";
 // so the checked offset shrinks by the same amount to keep it pinned to the right edge.
 // The press variant skips disabled and read-only switches, which can't change.
 const sizes = {
+    xs: {
+        root: "h-3.5 w-5",
+        thumb: "size-2.5 data-checked:translate-x-1.5 group-[:active:not([data-disabled],[data-readonly])]:w-3.5 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-0.5",
+    },
     sm: {
         root: "h-4 w-6",
         thumb: "size-3 data-checked:translate-x-2 group-[:active:not([data-disabled],[data-readonly])]:w-4 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-1",
@@ -17,6 +21,10 @@ const sizes = {
     lg: {
         root: "h-6 w-10",
         thumb: "size-5 data-checked:translate-x-4 group-[:active:not([data-disabled],[data-readonly])]:w-6 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-3",
+    },
+    xl: {
+        root: "h-7 w-12",
+        thumb: "size-6 data-checked:translate-x-5 group-[:active:not([data-disabled],[data-readonly])]:w-7 group-[:active:not([data-disabled],[data-readonly])]:data-checked:translate-x-4",
     },
 } as const;
 

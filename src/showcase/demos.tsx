@@ -258,9 +258,11 @@ export const demos: Demo[] = [
         render: () => (
             <>
                 <Variant label="Sizes">
+                    <Switch size="xs" aria-label="Extra small" defaultChecked />
                     <Switch size="sm" aria-label="Small" defaultChecked />
                     <Switch size="md" aria-label="Medium" defaultChecked />
                     <Switch size="lg" aria-label="Large" defaultChecked />
+                    <Switch size="xl" aria-label="Extra large" defaultChecked />
                 </Variant>
                 <Variant label="States">
                     <Switch aria-label="Off" />
