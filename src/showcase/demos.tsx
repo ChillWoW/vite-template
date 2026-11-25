@@ -22,7 +22,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
+import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Separator, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
 import { ControlledAutocompleteDemo, FormAutocompleteDemo } from "./AutocompleteDemos";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
@@ -1044,6 +1044,47 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Form (Field)">
                     <FormSelectDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Separator",
+        render: () => (
+            <>
+                <Variant label="Horizontal">
+                    <div className="flex w-full max-w-sm flex-col gap-3">
+                        <div className="flex flex-col gap-1">
+                            <span className="text-sm font-medium text-text">Base UI</span>
+                            <span className="text-sm text-muted">Unstyled, accessible React components.</span>
+                        </div>
+                        <Separator />
+                        <div className="flex h-5 items-center gap-3 text-sm text-text">
+                            <span>Docs</span>
+                            <Separator orientation="vertical" />
+                            <span>Components</span>
+                            <Separator orientation="vertical" />
+                            <span>Source</span>
+                        </div>
+                    </div>
+                </Variant>
+                <Variant label="Vertical">
+                    <div className="flex h-8 items-center gap-1">
+                        <Toggle size="icon-sm" aria-label="Bold"><TextBIcon /></Toggle>
+                        <Toggle size="icon-sm" aria-label="Italic"><TextItalicIcon /></Toggle>
+                        <Toggle size="icon-sm" aria-label="Underline"><TextUnderlineIcon /></Toggle>
+                        <Separator orientation="vertical" className="mx-1 my-1.5" />
+                        <Toggle size="icon-sm" aria-label="Align left"><TextAlignLeftIcon /></Toggle>
+                        <Toggle size="icon-sm" aria-label="Align center"><TextAlignCenterIcon /></Toggle>
+                        <Toggle size="icon-sm" aria-label="Align right"><TextAlignRightIcon /></Toggle>
+                    </div>
+                </Variant>
+                <Variant label="With label">
+                    <div className="flex w-full max-w-xs flex-col gap-4">
+                        <Button variant="outline" className="w-full">Continue with SSO</Button>
+                        <Separator>or</Separator>
+                        <Input type="email" placeholder="name@example.com" aria-label="Email" />
+                    </div>
                 </Variant>
             </>
         ),
