@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
-import { PlusIcon, TrashIcon } from "@phosphor-icons/react";
+import {
+    EnvelopeSimpleIcon,
+    MagnifyingGlassIcon,
+    PaperPlaneRightIcon,
+    PlusIcon,
+    TrashIcon,
+} from "@phosphor-icons/react";
 import { Button, Input, Spinner } from "../ui";
 import { Variant } from "./Variant";
 
@@ -96,6 +102,49 @@ export const demos: Demo[] = [
                     <div className="flex w-full max-w-sm gap-2">
                         <Input type="email" placeholder="name@example.com" />
                         <Button>Subscribe</Button>
+                    </div>
+                </Variant>
+                <Variant label="Group">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        <Input.Group>
+                            <Input.Addon><MagnifyingGlassIcon /></Input.Addon>
+                            <Input type="search" placeholder="Search..." />
+                        </Input.Group>
+                        <Input.Group>
+                            <Input.Addon>https://</Input.Addon>
+                            <Input placeholder="example.com" />
+                        </Input.Group>
+                        <Input.Group>
+                            <Input type="number" placeholder="0.00" />
+                            <Input.Addon>USD</Input.Addon>
+                        </Input.Group>
+                        <Input.Group>
+                            <Input.Addon><EnvelopeSimpleIcon /></Input.Addon>
+                            <Input type="email" placeholder="name@example.com" />
+                            <Input.Addon>
+                                <Button size="icon-xs" variant="ghost" aria-label="Send">
+                                    <PaperPlaneRightIcon />
+                                </Button>
+                            </Input.Addon>
+                        </Input.Group>
+                        <Input.Group>
+                            <Input.Addon><MagnifyingGlassIcon /></Input.Addon>
+                            <Input defaultValue="Invalid" aria-invalid />
+                        </Input.Group>
+                        <Input.Group>
+                            <Input.Addon><MagnifyingGlassIcon /></Input.Addon>
+                            <Input placeholder="Disabled" disabled />
+                        </Input.Group>
+                    </div>
+                </Variant>
+                <Variant label="Group sizes">
+                    <div className="flex w-full max-w-xs flex-col gap-3">
+                        {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                            <Input.Group key={size} size={size}>
+                                <Input.Addon><MagnifyingGlassIcon /></Input.Addon>
+                                <Input placeholder={`Search (${size})`} />
+                            </Input.Group>
+                        ))}
                     </div>
                 </Variant>
             </>
