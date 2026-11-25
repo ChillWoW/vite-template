@@ -13,13 +13,16 @@ import {
     PlusIcon,
     SunIcon,
     SlidersHorizontalIcon,
+    TextAlignCenterIcon,
+    TextAlignLeftIcon,
+    TextAlignRightIcon,
     TextBIcon,
     TextItalicIcon,
     TextStrikethroughIcon,
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Slider, Spinner, Switch, Tooltip } from "../ui";
+import { Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, Select, Skeleton, Slider, Spinner, Switch, Toggle, Tooltip } from "../ui";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
@@ -31,6 +34,7 @@ import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./Sele
 import { LoadingToggleSkeletonDemo } from "./SkeletonDemos";
 import { ControlledSliderDemo, FormSliderDemo } from "./SliderDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
+import { ControlledToggleDemo, ControlledToggleGroupDemo } from "./ToggleDemos";
 import { Variant } from "./Variant";
 
 export interface Demo {
@@ -1149,6 +1153,96 @@ export const demos: Demo[] = [
                 </Variant>
                 <Variant label="Form values">
                     <FormSwitchDemo />
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Toggle",
+        render: () => (
+            <>
+                <Variant label="Variants">
+                    <Toggle aria-label="Bold"><TextBIcon /></Toggle>
+                    <Toggle aria-label="Bold" defaultPressed><TextBIcon /></Toggle>
+                    <Toggle variant="outline" aria-label="Italic"><TextItalicIcon /></Toggle>
+                    <Toggle variant="outline" aria-label="Italic" defaultPressed><TextItalicIcon /></Toggle>
+                </Variant>
+                <Variant label="Sizes">
+                    {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+                        <Toggle key={size} size={size} variant="outline" defaultPressed={size === "md"}>
+                            <TextBIcon />
+                            Bold
+                        </Toggle>
+                    ))}
+                </Variant>
+                <Variant label="Icon sizes">
+                    {(["icon-xs", "icon-sm", "icon-md", "icon-lg", "icon-xl"] as const).map((size) => (
+                        <Toggle key={size} size={size} aria-label={`Bold (${size})`} defaultPressed>
+                            <TextBIcon />
+                        </Toggle>
+                    ))}
+                </Variant>
+                <Variant label="States">
+                    <Toggle aria-label="Off"><TextUnderlineIcon /></Toggle>
+                    <Toggle aria-label="On" defaultPressed><TextUnderlineIcon /></Toggle>
+                    <Toggle aria-label="Disabled off" disabled><TextUnderlineIcon /></Toggle>
+                    <Toggle aria-label="Disabled on" disabled defaultPressed><TextUnderlineIcon /></Toggle>
+                </Variant>
+                <Variant label="Controlled">
+                    <ControlledToggleDemo />
+                </Variant>
+                <Variant label="Group (single)">
+                    <Toggle.Group defaultValue={["left"]} size="icon-sm" aria-label="Text alignment">
+                        <Toggle value="left" aria-label="Align left"><TextAlignLeftIcon /></Toggle>
+                        <Toggle value="center" aria-label="Align center"><TextAlignCenterIcon /></Toggle>
+                        <Toggle value="right" aria-label="Align right"><TextAlignRightIcon /></Toggle>
+                    </Toggle.Group>
+                    <Toggle.Group defaultValue={["week"]} variant="outline" aria-label="Range">
+                        <Toggle value="day">Day</Toggle>
+                        <Toggle value="week">Week</Toggle>
+                        <Toggle value="month">Month</Toggle>
+                    </Toggle.Group>
+                </Variant>
+                <Variant label="Group (multiple)">
+                    <Toggle.Group multiple defaultValue={["bold", "underline"]} size="icon-sm" aria-label="Text formatting">
+                        <Toggle value="bold" aria-label="Bold"><TextBIcon /></Toggle>
+                        <Toggle value="italic" aria-label="Italic"><TextItalicIcon /></Toggle>
+                        <Toggle value="underline" aria-label="Underline"><TextUnderlineIcon /></Toggle>
+                        <Toggle value="strikethrough" aria-label="Strikethrough"><TextStrikethroughIcon /></Toggle>
+                    </Toggle.Group>
+                    <Toggle.Group
+                        multiple
+                        defaultValue={["italic"]}
+                        size="icon-sm"
+                        aria-label="Text formatting (toolbar)"
+                        className="rounded-md border border-border p-1"
+                    >
+                        <Toggle value="bold" aria-label="Bold"><TextBIcon /></Toggle>
+                        <Toggle value="italic" aria-label="Italic"><TextItalicIcon /></Toggle>
+                        <Toggle value="underline" aria-label="Underline"><TextUnderlineIcon /></Toggle>
+                    </Toggle.Group>
+                </Variant>
+                <Variant label="Vertical">
+                    <Toggle.Group orientation="vertical" defaultValue={["center"]} size="icon-sm" aria-label="Text alignment (vertical)">
+                        <Toggle value="left" aria-label="Align left"><TextAlignLeftIcon /></Toggle>
+                        <Toggle value="center" aria-label="Align center"><TextAlignCenterIcon /></Toggle>
+                        <Toggle value="right" aria-label="Align right"><TextAlignRightIcon /></Toggle>
+                    </Toggle.Group>
+                    <Toggle.Group orientation="vertical" defaultValue={["week"]} variant="outline" aria-label="Range (vertical)">
+                        <Toggle value="day">Day</Toggle>
+                        <Toggle value="week">Week</Toggle>
+                        <Toggle value="month">Month</Toggle>
+                    </Toggle.Group>
+                </Variant>
+                <Variant label="Disabled group">
+                    <Toggle.Group disabled defaultValue={["center"]} size="icon-sm" aria-label="Text alignment (disabled)">
+                        <Toggle value="left" aria-label="Align left"><TextAlignLeftIcon /></Toggle>
+                        <Toggle value="center" aria-label="Align center"><TextAlignCenterIcon /></Toggle>
+                        <Toggle value="right" aria-label="Align right"><TextAlignRightIcon /></Toggle>
+                    </Toggle.Group>
+                </Variant>
+                <Variant label="Controlled group">
+                    <ControlledToggleGroupDemo />
                 </Variant>
             </>
         ),
