@@ -5,6 +5,7 @@ export * from "./Collapsible";
 export * from "./ContextMenu";
 export * from "./Field";
 export * from "./Input";
+export * from "./Kbd";
 export * from "./Menu";
 export * from "./Modal";
 export * from "./NumberField";

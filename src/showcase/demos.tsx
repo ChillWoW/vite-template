@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
 import {
+    ArrowBendDownLeftIcon,
+    ArrowFatUpIcon,
     BellIcon,
+    CommandIcon,
     CopyIcon,
     DotsThreeVerticalIcon,
     EnvelopeSimpleIcon,
@@ -22,7 +25,7 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Menu, Modal, NumberField, Popover, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Textarea, Toggle, Tooltip } from "../ui";
+import { Autocomplete, Button, Checkbox, Collapsible, ContextMenu, Field, Input, Kbd, Menu, Modal, NumberField, Popover, SegmentedControl, Select, Separator, Skeleton, Slider, Spinner, Switch, Textarea, Toggle, Tooltip } from "../ui";
 import { ControlledAutocompleteDemo, FormAutocompleteDemo } from "./AutocompleteDemos";
 import { ControlledCheckboxDemo, FormCheckboxDemo, ParentCheckboxDemo } from "./CheckboxDemos";
 import { ControlledCollapsibleDemo } from "./CollapsibleDemos";
@@ -509,6 +512,53 @@ export const demos: Demo[] = [
                             </Input.Group>
                         ))}
                     </div>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Kbd",
+        render: () => (
+            <>
+                <Variant label="Keys">
+                    <Kbd>Esc</Kbd>
+                    <Kbd>Tab</Kbd>
+                    <Kbd>K</Kbd>
+                    <Kbd aria-label="Command"><CommandIcon /></Kbd>
+                    <Kbd aria-label="Shift"><ArrowFatUpIcon /></Kbd>
+                    <Kbd aria-label="Enter"><ArrowBendDownLeftIcon /></Kbd>
+                </Variant>
+                <Variant label="Sizes">
+                    <Kbd size="sm">Ctrl</Kbd>
+                    <Kbd size="md">Ctrl</Kbd>
+                </Variant>
+                <Variant label="Group">
+                    <Kbd.Group>
+                        <Kbd>Ctrl</Kbd>
+                        <Kbd>Shift</Kbd>
+                        <Kbd>P</Kbd>
+                    </Kbd.Group>
+                    <Kbd.Group>
+                        <Kbd>Ctrl</Kbd>+<Kbd>K</Kbd>
+                    </Kbd.Group>
+                    <Kbd.Group>
+                        <Kbd>G</Kbd>then<Kbd>I</Kbd>
+                    </Kbd.Group>
+                </Variant>
+                <Variant label="In text">
+                    <p className="text-sm text-muted">
+                        Press <Kbd>/</Kbd> to search, or{" "}
+                        <Kbd.Group><Kbd>Ctrl</Kbd><Kbd>Enter</Kbd></Kbd.Group> to send.
+                    </p>
+                </Variant>
+                <Variant label="In an input">
+                    <Input.Group className="max-w-xs">
+                        <Input.Addon><MagnifyingGlassIcon /></Input.Addon>
+                        <Input placeholder="Search…" aria-label="Search" />
+                        <Input.Addon>
+                            <Kbd.Group><Kbd>Ctrl</Kbd><Kbd>K</Kbd></Kbd.Group>
+                        </Input.Addon>
+                    </Input.Group>
                 </Variant>
             </>
         ),
@@ -1568,9 +1618,10 @@ export const demos: Demo[] = [
                         </Tooltip.Trigger>
                         <Tooltip.Content side="bottom" className="flex items-center gap-2">
                             Save changes
-                            <kbd className="rounded border border-border bg-surface px-1 font-sans text-[10px] text-muted">
-                                Ctrl S
-                            </kbd>
+                            <Kbd.Group>
+                                <Kbd>Ctrl</Kbd>
+                                <Kbd>S</Kbd>
+                            </Kbd.Group>
                         </Tooltip.Content>
                     </Tooltip>
                     <Tooltip>
