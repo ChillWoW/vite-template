@@ -17,8 +17,9 @@ import {
     TextUnderlineIcon,
     TrashIcon,
 } from "@phosphor-icons/react";
-import { Button, ContextMenu, Field, Input, Menu, Select, Spinner, Switch, Tooltip } from "../ui";
+import { Button, ContextMenu, Field, Input, Menu, Modal, Select, Spinner, Switch, Tooltip } from "../ui";
 import { ActionMenuDemo, FileContextMenuDemo, OptionsMenuDemo } from "./MenuDemos";
+import { ConfirmModalDemo, FormModalDemo } from "./ModalDemos";
 import { BodyPortalDemo, ContainerPortalDemo } from "./PortalDemos";
 import { ControlledSelectDemo, FormSelectDemo, MultipleSelectDemo } from "./SelectDemos";
 import { ControlledSwitchDemo, FormSwitchDemo } from "./SwitchDemos";
@@ -352,6 +353,120 @@ export const demos: Demo[] = [
                             <Menu.Item>Hidden</Menu.Item>
                         </Menu.Content>
                     </Menu>
+                </Variant>
+            </>
+        ),
+    },
+    {
+        name: "Modal",
+        render: () => (
+            <>
+                <Variant label="Basic">
+                    <Modal>
+                        <Modal.Trigger render={<Button variant="outline" />}>Open modal</Modal.Trigger>
+                        <Modal.Content>
+                            <Modal.Header>
+                                <Modal.Title>Invite teammates</Modal.Title>
+                                <Modal.Description>They'll get an email with a link to join.</Modal.Description>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Input placeholder="name@example.com" aria-label="Email" />
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Modal.Close render={<Button variant="ghost" />}>Cancel</Modal.Close>
+                                <Modal.Close render={<Button />}>
+                                    <PaperPlaneRightIcon />Send invite
+                                </Modal.Close>
+                            </Modal.Footer>
+                        </Modal.Content>
+                    </Modal>
+                </Variant>
+                <Variant label="Sizes">
+                    {(["sm", "md", "lg", "xl"] as const).map((size) => (
+                        <Modal key={size}>
+                            <Modal.Trigger render={<Button variant="outline" />}>{size}</Modal.Trigger>
+                            <Modal.Content size={size}>
+                                <Modal.Header>
+                                    <Modal.Title>Size {size}</Modal.Title>
+                                    <Modal.Description>Max width changes; height follows the content.</Modal.Description>
+                                </Modal.Header>
+                                <Modal.Footer>
+                                    <Modal.Close render={<Button />}>Done</Modal.Close>
+                                </Modal.Footer>
+                            </Modal.Content>
+                        </Modal>
+                    ))}
+                </Variant>
+                <Variant label="Form (controlled)">
+                    <FormModalDemo />
+                </Variant>
+                <Variant label="Confirmation (no outside dismiss, no close button)">
+                    <ConfirmModalDemo />
+                </Variant>
+                <Variant label="Long content">
+                    <Modal>
+                        <Modal.Trigger render={<Button variant="outline" />}>Terms of service</Modal.Trigger>
+                        <Modal.Content size="lg">
+                            <Modal.Header>
+                                <Modal.Title>Terms of service</Modal.Title>
+                                <Modal.Description>The body scrolls; header and footer stay put.</Modal.Description>
+                            </Modal.Header>
+                            <Modal.Body className="flex flex-col gap-3 text-muted">
+                                {Array.from({ length: 24 }, (_, i) => (
+                                    <p key={i}>
+                                        {i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                        veniam, quis nostrud exercitation ullamco laboris.
+                                    </p>
+                                ))}
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Modal.Close render={<Button variant="ghost" />}>Decline</Modal.Close>
+                                <Modal.Close render={<Button />}>Accept</Modal.Close>
+                            </Modal.Footer>
+                        </Modal.Content>
+                    </Modal>
+                </Variant>
+                <Variant label="Nested">
+                    <Modal>
+                        <Modal.Trigger render={<Button variant="outline" />}>Open settings</Modal.Trigger>
+                        <Modal.Content>
+                            <Modal.Header>
+                                <Modal.Title>Settings</Modal.Title>
+                                <Modal.Description>Opening a second modal pushes this one back.</Modal.Description>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Select items={themes} defaultValue="dark">
+                                    <Select.Trigger className="w-44" aria-label="Theme">
+                                        <Select.Value />
+                                    </Select.Trigger>
+                                    <Select.Content>
+                                        {Object.entries(themes).map(([key, label]) => (
+                                            <Select.Item key={key} value={key}>{label}</Select.Item>
+                                        ))}
+                                    </Select.Content>
+                                </Select>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Modal>
+                                    <Modal.Trigger render={<Button variant="destructive-outline" />}>
+                                        <TrashIcon />Reset all
+                                    </Modal.Trigger>
+                                    <Modal.Content size="sm">
+                                        <Modal.Header>
+                                            <Modal.Title>Reset all settings?</Modal.Title>
+                                            <Modal.Description>Everything goes back to its default.</Modal.Description>
+                                        </Modal.Header>
+                                        <Modal.Footer>
+                                            <Modal.Close render={<Button variant="ghost" />}>Cancel</Modal.Close>
+                                            <Modal.Close render={<Button variant="destructive" />}>Reset</Modal.Close>
+                                        </Modal.Footer>
+                                    </Modal.Content>
+                                </Modal>
+                                <Modal.Close render={<Button />}>Done</Modal.Close>
+                            </Modal.Footer>
+                        </Modal.Content>
+                    </Modal>
                 </Variant>
             </>
         ),

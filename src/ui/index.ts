@@ -3,6 +3,7 @@ export * from "./ContextMenu";
 export * from "./Field";
 export * from "./Input";
 export * from "./Menu";
+export * from "./Modal";
 export * from "./Portal";
 export * from "./Select";
 export * from "./Spinner";
